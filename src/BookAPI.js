@@ -14,15 +14,15 @@ const headers = {
 }
 
 export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
-    .then(res => res.json())
-    .then(data => data.book)
+  axios.get(`${api}/books/${bookId}`, { headers })
 
-export const getAll = () =>{
-    axios.get(`${api}/books`, { headers })
-}
+export const getAll = () =>
+  axios.get(`${api}/books`, { headers })
+
  
 export const update = (book, shelf) =>
+  //axios.put(`${api}/books/${book.id}`,{headers},shelf)
+  //console.log(book.id)
   fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
     headers: {
