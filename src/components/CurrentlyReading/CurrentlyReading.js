@@ -15,10 +15,13 @@ export default class CurrentlyReading extends Component {
         return (
             <div>
                 <h2>Currently Reading</h2>
+                {
+                    console.log('Props cureently Reading ',this.props)
+                }
                 <hr></hr>
                 {
                     this.props.books.map(book=>{
-                        return <Book book={book} shelfs={this.state.shelfs}></Book>
+                        return <Book book={book} shelfs={this.state.shelfs} handleChange={this.props.handleChange}></Book>
                     })
                 }
             </div>

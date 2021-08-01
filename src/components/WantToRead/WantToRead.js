@@ -18,7 +18,7 @@ export default class WantToRead extends Component {
                 <hr></hr>
                 {
                     this.props.books.map(book=>{
-                        return <Book book={book} shelfs={this.state.shelfs}></Book>
+                        return <Book book={book} shelfs={this.state.shelfs} handleChange={this.props.handleChange}></Book>
                     })
                 }
             </div>
