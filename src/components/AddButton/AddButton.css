@@ -1,0 +1,17 @@
+.btn{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    background-color: blue;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+.img{
+    border-radius: 50%;
+    height: 115px;
+    width: 115px;
+    padding: 0px;
+    margin-left:-5px;
+
+}

@@ -4,6 +4,9 @@ import WantToRead from './components/WantToRead/WantToRead';
 import Read from './components/Read/Read';
 import { Component } from 'react';
 import { getAll,get } from './BookAPI';
+import AddButton from './components/AddButton/AddButton';
+import './components/Modal/Modal.css'
+import Modal from './components/Modal/Modal';
 
 class App extends Component{
 
@@ -40,15 +43,21 @@ class App extends Component{
           })
         })
 	}
+  handleSubmit = () =>{
+    console.log('I am Handleeee SUbmitttt ')
+  }
   render(){
     return (
       <div className="app">
         <div className="header">
           <h1>My Reads </h1>
         </div>
+       
         <CurrentlyReading handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='currentlyReading')}></CurrentlyReading>
         <WantToRead handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='wantToRead')}></WantToRead>
         <Read handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='read')}></Read>   
+        <Modal handleSubmit={this.handleSubmit}></Modal>
+        <AddButton href="#demo-modal"></AddButton>
       </div>
     );
   }
