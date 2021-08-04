@@ -65,7 +65,7 @@ class App extends Component{
     return (
       <div className="app">
         <div className="header">
-          <h1>My Reads </h1>
+          <h1>My Reads From Surge </h1>
         </div>
        
         <CurrentlyReading handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='currentlyReading')}></CurrentlyReading>
