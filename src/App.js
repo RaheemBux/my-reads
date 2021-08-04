@@ -3,7 +3,7 @@ import CurrentlyReading from './components/CurrentlyReading/CurrentlyReading';
 import WantToRead from './components/WantToRead/WantToRead';
 import Read from './components/Read/Read';
 import { Component } from 'react';
-import { getAll,get } from './BookAPI';
+import { getAll,get,create } from './BookAPI';
 import AddButton from './components/AddButton/AddButton';
 import './components/Modal/Modal.css'
 import Modal from './components/Modal/Modal';
@@ -15,6 +15,9 @@ class App extends Component{
 
     this.state = {
       books:[],
+      name : '',
+      shelf:'',
+      url:'',
     }
   }
   componentDidMount(){
@@ -43,9 +46,21 @@ class App extends Component{
           })
         })
 	}
-  handleSubmit = () =>{
-    console.log('I am Handleeee SUbmitttt ')
+  handleFormChange = (e)=>{
+    this.setState({ [e.target.name]: e.target.value}); 
   }
+  handleSubmit = (e) =>{
+    let newBook = {
+      name:this.state.name,
+      shelf:this.state.shelf,
+      imageLinks:{thumbnail:this.state.url}
+    }
+    this.setState({
+      books:[newBook,...this.state.books]
+    })
+    create(newBook)
+    e.preventDefault()
+}
   render(){
     return (
       <div className="app">
@@ -56,8 +71,9 @@ class App extends Component{
         <CurrentlyReading handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='currentlyReading')}></CurrentlyReading>
         <WantToRead handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='wantToRead')}></WantToRead>
         <Read handleChange={this.handleChange} books={this.state.books.filter(book=>book.shelf==='read')}></Read>   
-        <Modal handleSubmit={this.handleSubmit}></Modal>
+        <Modal handleSubmit={this.handleSubmit} state={this.state} handleFormChange={(e)=>this.handleFormChange(e)}></Modal>
         <AddButton href="#demo-modal"></AddButton>
+        {   console.log('sateeee ',this.state)}
       </div>
     );
   }

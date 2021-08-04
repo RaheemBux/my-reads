@@ -1,23 +1,30 @@
+import { Component } from 'react';
 import '../Modal/Modal.css'
 
-const Modal = (props) => {
+class Modal extends Component {
 
-    const {handleSubmit} = props
-    return <>
-    <div id="demo-modal" className="modal">
+    constructor(props){
+        super(props)
+    }
+
+   
+    render(){
+
+        return <>
+        <div id="demo-modal" className="modal">
             <div className="modal__content">
                 <h1>Add Book</h1>
-                <form>
+                <form onSubmit={this.props.handleSubmit}>
                     <label>Name : </label>
-                    <input type="text" name="name"></input><br></br><br></br>
+                    <input type="text" name="name" value={this.props.state.name} onChange={(e)=>this.props.handleFormChange(e)}></input><br></br><br></br>
 
                     <label>Shelf : </label>
-                    <input type="text" name="shelf"></input><br></br><br></br>
+                    <input type="text" name="shelf" value={this.props.state.shelf} onChange={(e)=>this.props.handleFormChange(e)}></input><br></br><br></br>
 
                     <label>Image Url : </label>
-                    <input type="text" name="url"></input><br></br><br></br>
+                    <input type="text" name="url" value={this.props.state.url} onChange={(e)=>this.props.handleFormChange(e)}></input><br></br><br></br>
 
-                    <input type="button" onClick={handleSubmit} value="Add"></input>
+                    <input type="submit" value="Add"></input>
 
                 </form>
                 
@@ -25,5 +32,7 @@ const Modal = (props) => {
             </div>
         </div>
         </>
+
+    }  
 }
 export default Modal;
